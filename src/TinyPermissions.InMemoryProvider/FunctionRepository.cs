@@ -9,6 +9,16 @@ namespace TinyPermissionsLib.InMemoryProvider
 
         public void AddFunction(IFunction function)
         {
+            if (!(function is InMemoryProvider.Function))
+            {
+                var f = new InMemoryProvider.Function()
+                {
+                    Id = function.Id,
+                    Name = function.Name,
+                    Description = function.Description
+                };
+            }
+
             _functions.Add(function.Id, function);
         }
 
@@ -32,7 +42,7 @@ namespace TinyPermissionsLib.InMemoryProvider
 
         public bool UserHasAccessToFunction(IUser user, IFunction function)
         {
-            var f = GetFunction(function.Id) as Function;
+            var f = GetFunction(function.Id) as TinyPermissionsLib.InMemoryProvider.Function;
 
             if (f == null)
             {

@@ -13,7 +13,7 @@ namespace TinyPermissionsLib.Tests
             var tiny = new TinyPermissions(new UserRepository(), new FunctionRepository());
 
             tiny.UserRepository.AddUser(new User() { Username = "johan" });
-            tiny.FunctionRepository.AddFunction(new Function() { Id = "get-ducks", Name = "Get ducks" });
+            tiny.FunctionRepository.AddFunction(new TinyPermissionsLib.InMemoryProvider.Function() { Id = "get-ducks", Name = "Get ducks" });
 
             // Act
             tiny.AddFunctionToUser("get-ducks", "johan");

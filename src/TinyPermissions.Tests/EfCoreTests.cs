@@ -22,10 +22,12 @@ namespace TinyPermissionsLib.Tests
             using (var context = new DuckContext(options))
             {
                 // Add data
-                context.Ducks.Add(new Duck() { Name = "Donald", Size = 42 });
-                context.Ducks.Add(new Duck() { Name = "Duffy", Size = 9 });
+                var user = new User() { Id = 1, Username = "billybob" };
+                var user2 = new User() { Id = 2, Username = "jörgen" };
+				context.Users.Add(user);
+                context.Ducks.Add(new Duck() { Name = "Donald", Size = 42, Owner = user });
+                context.Ducks.Add(new Duck() { Name = "Duffy", Size = 9, Owner = user2 });
                 context.Functions.Add(new Function() { Id = "get-users", Name = "Get Users", Description = "Gets users" });
-                context.Users.Add(new User() { Id = 1, Username = "billybob" });
                 context.SaveChanges();
 
                 // Set user information
@@ -33,8 +35,10 @@ namespace TinyPermissionsLib.Tests
                 var principal = new GenericPrincipal(identity, null);
                 Thread.CurrentPrincipal = principal;
 
-                // Define a permission filter
-                context.Ducks.AddPermissionFilter("get-users", (d) => d.Where(s => s.Size > 40));
+                // Define a permission filter, filtering ducks by owner
+                // d = us the IQueryable<Duck> filter to add
+                // u = a GenericIdentity at the moment, describing the current user
+                context.Ducks.AddPermissionFilter("get-users", (d, u) => d.Where(x => x.Owner.Username == u.Name));
 
                 // Give billy bob access to the get-users function
                 var tiny = new TinyPermissions(context, context);
