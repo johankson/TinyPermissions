@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using TinyPermissionsLib;
 using System.Linq;
 
-namespace TinyPermissionsLib.Tests
+namespace TinyPermissionsLib.Sample.Data
 {
     public class DuckContext : DbContext, IUserRepository, IFunctionRepository
     {

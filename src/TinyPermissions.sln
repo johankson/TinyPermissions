@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions.InMemoryPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions.EFCoreProvider", "TinyPermissions.EFCoreProvider\TinyPermissions.EFCoreProvider.csproj", "{3338FD53-ED45-41DF-A619-8A0EB24BA36D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{2D7BCA18-448F-4757-8C63-69120C31D992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions.Sample.WebApi", "Sample\TinyPermissions.Sample.WebApi\TinyPermissions.Sample.WebApi.csproj", "{43B90FD6-4D54-49B1-9F58-C84A940FEC6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions.Sample.Data", "Sample\TinyPermissions.Sample.Data\TinyPermissions.Sample.Data.csproj", "{EF7885BC-C9EF-4F3E-8406-25F9D8424FCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +37,17 @@ Global
 		{3338FD53-ED45-41DF-A619-8A0EB24BA36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3338FD53-ED45-41DF-A619-8A0EB24BA36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3338FD53-ED45-41DF-A619-8A0EB24BA36D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B90FD6-4D54-49B1-9F58-C84A940FEC6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B90FD6-4D54-49B1-9F58-C84A940FEC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B90FD6-4D54-49B1-9F58-C84A940FEC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B90FD6-4D54-49B1-9F58-C84A940FEC6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF7885BC-C9EF-4F3E-8406-25F9D8424FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF7885BC-C9EF-4F3E-8406-25F9D8424FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF7885BC-C9EF-4F3E-8406-25F9D8424FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF7885BC-C9EF-4F3E-8406-25F9D8424FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43B90FD6-4D54-49B1-9F58-C84A940FEC6F} = {2D7BCA18-448F-4757-8C63-69120C31D992}
+		{EF7885BC-C9EF-4F3E-8406-25F9D8424FCB} = {2D7BCA18-448F-4757-8C63-69120C31D992}
 	EndGlobalSection
 EndGlobal

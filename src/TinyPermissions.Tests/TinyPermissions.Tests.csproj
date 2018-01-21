@@ -18,5 +18,6 @@
     <ProjectReference Include="..\TinyPermissions.InMemoryProvider\TinyPermissions.InMemoryProvider.csproj" />
     <ProjectReference Include="..\TinyPermissions\TinyPermissions.csproj" />
     <ProjectReference Include="..\TinyPermissions.EFCoreProvider\TinyPermissions.EFCoreProvider.csproj" />
+    <ProjectReference Include="..\Sample\TinyPermissions.Sample.WebApi\TinyPermissions.Sample.Data\TinyPermissions.Sample.Data.csproj" />
   </ItemGroup>
 </Project>
