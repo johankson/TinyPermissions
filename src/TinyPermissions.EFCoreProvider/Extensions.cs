@@ -12,10 +12,10 @@ namespace TinyPermissionsLib.EFCoreProvider
     {
         private static List<object> d = new List<object>();
 
-        public static IQueryable<T> WithPermissions<T>(this DbSet<T> dbset) where T : class
+        public static IQueryable<T> WithFunctionPermissions<T>(this DbSet<T> dbset) where T : class
         {
             var key = dbset.GetType().FullName;
-            var e = d.OfType<PermissionFilterEntry<T>>().FirstOrDefault(x => x.DbSetIdentifier == key);
+            var e = d.OfType<PermissionFunctionFilterEntry<T>>().FirstOrDefault(x => x.DbSetIdentifier == key);
 
             if (e.FilterQuery != null)
             {
@@ -33,11 +33,10 @@ namespace TinyPermissionsLib.EFCoreProvider
             return dbset;
         }
 
-        public static IQueryable<T> WithPermissions<T>(this DbSet<T> dbset, string role) where T : class
+        public static IQueryable<T> WithRole<T>(this DbSet<T> dbset, string role) where T : class
         {
-            throw new NotImplementedException("Roles are not implemented yet");
             var key = dbset.GetType().FullName;
-            var e = d.OfType<PermissionFilterEntry<T>>().FirstOrDefault(x => x.DbSetIdentifier == key);
+            var e = d.OfType<PermissionRoleFilterEntry<T>>().FirstOrDefault(x => x.DbSetIdentifier == key && x.Role == role);
 
             if (e.FilterQuery != null)
             {
@@ -59,7 +58,7 @@ namespace TinyPermissionsLib.EFCoreProvider
             string function,
             Func<IQueryable<T>, IQueryable<T>> filterQuery) where T : class
         {
-            var entry = new PermissionFilterEntry<T>()
+            var entry = new PermissionFunctionFilterEntry<T>()
             {
                 DbSetIdentifier = dbset.GetType().FullName,
                 Function = function,
@@ -69,13 +68,13 @@ namespace TinyPermissionsLib.EFCoreProvider
             d.Add(entry);
         }
 
-        public static void AddPermissionFilter<T>(
+        public static void AddFunctionPermissionFilter<T>(
             this DbSet<T> dbset,
             string function,
             Func<IQueryable<T>, IIdentity, IQueryable<T>> filterQuery)
             where T : class
         {
-            var entry = new PermissionFilterEntry<T>()
+            var entry = new PermissionFunctionFilterEntry<T>()
             {
                 DbSetIdentifier = dbset.GetType().FullName,
                 Function = function,
@@ -85,10 +84,27 @@ namespace TinyPermissionsLib.EFCoreProvider
             d.Add(entry);
         }
 
+        public static void AddRolePermissionFilter<T>(
+            this DbSet<T> dbset,
+            string function,
+            Func<IQueryable<T>, IIdentity, IQueryable<T>> filterQuery)
+            where T : class
+        {
+            var entry = new PermissionRoleFilterEntry<T>()
+            {
+                DbSetIdentifier = dbset.GetType().FullName,
+                Role = function,
+                FilterQueryWithUser = filterQuery
+            };
+
+            d.Add(entry);
+        }
+
         public static TinyPermissions UseContext(this TinyPermissions tiny, DbContext context)
         {
-            tiny.UserRepository = (IUserRepository)context;
-            tiny.FunctionRepository = (IFunctionRepository)context;
+            tiny.UserRepository = context as IUserRepository;
+            tiny.FunctionRepository = context as IFunctionRepository;
+            tiny.RoleRepository = context as IRoleRepository;
 
             if (tiny.UserRepository == null)
             {
@@ -98,6 +114,11 @@ namespace TinyPermissionsLib.EFCoreProvider
             if (tiny.FunctionRepository == null)
             {
                 throw new ArgumentException("The context must implement IFunctionRepository", nameof(context));
+            }
+
+            if (tiny.RoleRepository == null)
+            {
+                throw new ArgumentException("The context must implement IRoleRepository", nameof(context));
             }
 
             return tiny;
@@ -120,11 +141,20 @@ namespace TinyPermissionsLib.EFCoreProvider
         }
     }
 
-    internal class PermissionFilterEntry<T> where T : class
+    internal class PermissionFunctionFilterEntry<T> where T : class
     {
         public string DbSetIdentifier { get; internal set; }
         public string Function { get; internal set; }
         public Func<IQueryable<T>, IQueryable<T>> FilterQuery { get; internal set; }
         public Func<IQueryable<T>, IIdentity, IQueryable<T>> FilterQueryWithUser { get; internal set; }
+    }
+
+    internal class PermissionRoleFilterEntry<T> where T : class
+    {
+        public string DbSetIdentifier { get; internal set; }
+        public string Role { get; internal set; }
+        public Func<IQueryable<T>, IQueryable<T>> FilterQuery { get; internal set; }
+        public Func<IQueryable<T>, IIdentity, IQueryable<T>> FilterQueryWithUser { get; internal set; }
+  
     }
 }

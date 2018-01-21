@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TinyPermissionsLib.Sample.Data;
+using TinyPermissionsLib.EFCoreProvider;
+using System.Security.Principal;
+using System.Threading;
 
 namespace TinyPermissionsLib.Sample.WebApi.Controllers
 {
@@ -20,7 +23,11 @@ namespace TinyPermissionsLib.Sample.WebApi.Controllers
         [HttpGet]
         public List<Duck> GetDucks()
         {
-            return _context.Ducks.Include(x => x.Owner).ToList();
+            var identity = new GenericIdentity("billybob");
+            var principal = new GenericPrincipal(identity, null);
+            Thread.CurrentPrincipal = principal;
+
+            return _context.Ducks.WithRole("sales").Include(x => x.Owner).ToList();
         }
     }
 }

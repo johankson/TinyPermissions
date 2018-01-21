@@ -52,4 +52,33 @@ namespace TinyPermissionsLib.InMemoryProvider
             return f.Users.Any(x => x.Username == user.Username);
         }
     }
+
+    public class RoleRepository : IRoleRepository
+    {
+        private List<Role> _roles = new List<Role>();
+
+        public void AddRole(IRole role)
+        {
+            _roles.Add(new Role() { Id = role.Id });
+        }
+
+        public void AddUserToRole(string username, string role)
+        {
+            var r = _roles.FirstOrDefault(x => x.Id == role);
+            r.Users.Add(username);
+        }
+
+        public bool HasRole(string username, string role)
+        {
+            var r = _roles.FirstOrDefault(x => x.Id == role);
+            return r.Users.Any(x => x == username);
+        }
+    }
+
+    public class Role : IRole
+    {
+        public string Id { get; set; }
+
+        public List<string> Users { get; set; } = new List<string>();
+    }
 }

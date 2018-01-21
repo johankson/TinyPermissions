@@ -12,6 +12,8 @@ using TinyPermissionsLib.Sample.Data;
 using TinyPermissionsLib.EFCoreProvider;
 using TinyPermissionsLib.Sample.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Principal;
+using System.Threading;
 
 namespace TinyPermissionsLib.Sample.WebApi
 {
@@ -32,6 +34,9 @@ namespace TinyPermissionsLib.Sample.WebApi
             services.AddDbContextWithPermissions<DuckContext>((obj) => obj.UseSqlite(
                 Configuration.GetConnectionString("SampleDb"),
                 b => b.MigrationsAssembly("TinyPermissions.Sample.WebApi")));
+
+            // very bad hack
+            var a = new BasicPermissionService(services.BuildServiceProvider().GetService<DuckContext>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

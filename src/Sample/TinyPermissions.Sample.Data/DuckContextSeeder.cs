@@ -19,6 +19,8 @@ namespace TinyPermissionsLib.Sample.Data
             context.Users.Add(user2);
             context.SaveChanges();
 
+            context.Roles.Add(new Role() { Id = "sales" });
+
             context.Ducks.Add(new Duck() { Name = "Donald", Size = 42, Owner = user });
             context.Ducks.Add(new Duck() { Name = "Duffy", Size = 9, Owner = user2 });
             context.Functions.Add(new Function() { Id = "get-users", Name = "Get Users", Description = "Gets users" });

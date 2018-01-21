@@ -10,9 +10,10 @@ using TinyPermissionsLib.Sample.Data;
 namespace TinyPermissionsLib.Sample.WebApi.Migrations
 {
     [DbContext(typeof(DuckContext))]
-    partial class DuckContextModelSnapshot : ModelSnapshot
+    [Migration("20180121204528_roles")]
+    partial class roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
