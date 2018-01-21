@@ -41,7 +41,7 @@ namespace TinyPermissionsLib.Tests
                 context.Ducks.AddPermissionFilter("get-users", (d, u) => d.Where(x => x.Owner.Username == u.Name));
 
                 // Give billy bob access to the get-users function
-                var tiny = new TinyPermissions(context, context);
+                var tiny = new TinyPermissions().UseContext(context);
 
                 tiny.AddFunctionToUser("get-users", "billybob");
 

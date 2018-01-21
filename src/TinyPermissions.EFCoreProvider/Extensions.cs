@@ -61,6 +61,24 @@ namespace TinyPermissionsLib.EFCoreProvider
 
             d.Add(entry);
         }
+
+        public static TinyPermissions UseContext(this TinyPermissions tiny, DbContext context)
+        {
+            tiny.UserRepository = (IUserRepository)context;
+            tiny.FunctionRepository = (IFunctionRepository)context;
+
+            if (tiny.UserRepository == null)
+            {
+                throw new ArgumentException("The context must implement IUserRepository", "context");
+            }
+
+            if (tiny.FunctionRepository == null)
+            {
+                throw new ArgumentException("The context must implement IFunctionRepository", "context");
+            }
+
+            return tiny;
+        }
     }
 
     internal class PermissionFilterEntry<T> where T : class

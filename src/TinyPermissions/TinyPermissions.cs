@@ -3,6 +3,11 @@ namespace TinyPermissionsLib
 {
     public class TinyPermissions
     {
+        public TinyPermissions()
+        {
+            
+        }
+
         public TinyPermissions(IUserRepository userRepository, IFunctionRepository functionRepository)
         {
             UserRepository = userRepository;
@@ -30,8 +35,8 @@ namespace TinyPermissionsLib
             return FunctionRepository.UserHasAccessToFunction(u, f);
         }
 
-        public IUserRepository UserRepository { get; private set; }
-        public IFunctionRepository FunctionRepository { get; private set; }
+        public IUserRepository UserRepository { get; set; }
+        public IFunctionRepository FunctionRepository { get; set; }
     }
 
     public interface IUserRepository
