@@ -14,7 +14,9 @@ namespace TinyPermissionsLib.Sample.WebApi
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            BuildWebHost(args)
+                .SeedDb()
+                .Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

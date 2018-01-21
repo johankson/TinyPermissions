@@ -2,24 +2,25 @@
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-//using TinyPermissionsLib.Sample.Data;
+using Microsoft.EntityFrameworkCore;
+using TinyPermissionsLib.Sample.Data;
 
 namespace TinyPermissionsLib.Sample.WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class DucksController
     {
-        private TinyPermissionsLib.Sample.Data.DuckContext _context;
+        private DuckContext _context;
 
-        public DucksController(TinyPermissionsLib.Sample.Data.DuckContext context)
+        public DucksController(DuckContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public List<TinyPermissionsLib.Sample.Data.Duck> GetDucks()
+        public List<Duck> GetDucks()
         {
-            return _context.Ducks.ToList();
+            return _context.Ducks.Include(x => x.Owner).ToList();
         }
     }
 }
