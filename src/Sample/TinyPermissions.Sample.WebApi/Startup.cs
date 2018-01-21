@@ -36,16 +36,18 @@ namespace TinyPermissionsLib.Sample.WebApi
                 b => b.MigrationsAssembly("TinyPermissions.Sample.WebApi")));
 
             // very bad hack
-            var a = new BasicPermissionService(services.BuildServiceProvider().GetService<DuckContext>());
-        }
+       }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DuckContext context)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // do magic
+            BasicPermissionService.SetBasicPermissions(context);
 
             app.UseMvc();
         }

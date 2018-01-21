@@ -5,7 +5,6 @@ namespace TinyPermissionsLib
     {
         public TinyPermissions()
         {
-            
         }
 
         public TinyPermissions(IUserRepository userRepository, 
@@ -51,43 +50,5 @@ namespace TinyPermissionsLib
         public IUserRepository UserRepository { get; set; }
         public IFunctionRepository FunctionRepository { get; set; }
         public IRoleRepository RoleRepository { get; set; }
-    }
-
-    public interface IUserRepository
-    {
-        IUser GetUser(string username);
-        void AddUser(IUser user);
-    }
-
-    public interface IFunctionRepository
-    {
-        IFunction GetFunction(string functionId);
-        void AddFunction(IFunction function);
-        void AddUserToFunction(IUser user, IFunction function);
-        bool UserHasAccessToFunction(IUser user, IFunction function);
-    }
-
-    public interface IRoleRepository
-    {
-        void AddRole(IRole role);
-        void AddUserToRole(string username, string role);
-        bool HasRole(string username, string role);
-    }
-
-    public interface IUser
-    {
-        string Username { get; set; }
-    }
-
-    public interface IFunction
-    {
-        string Id { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-    }
-
-    public interface IRole
-    {
-        string Id { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using TinyPermissionsLib;
 using System.Linq;
@@ -88,57 +87,5 @@ namespace TinyPermissionsLib.Sample.Data
         {
             throw new NotImplementedException();
         }
-    }
-
-    public class Duck
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Size { get; set; }
-        public User Owner { get; set; }
-    }
-
-    public class User : IUser
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Username { get; set; }
-    }
-
-    public class UsersFunctions
-    {
-        [Key]
-        public int Id { get; set; }
-
-        public User User { get; set; }
-
-        public Function Function { get; set; }
-    }
-
-    public class UsersRoles
-    {
-        [Key]
-        public int Id { get; set; }
-
-        public User User { get; set; }
-
-        public Role Role { get; set; }
-    }
-
-    public class Function : IFunction
-    {
-        [Key]
-        public string Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-    }
-
-    public class Role : IRole
-    {
-        [Key]
-        public string Id { get; set; }
     }
 }
