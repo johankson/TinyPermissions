@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions", "TinyPermissions\TinyPermissions.csproj", "{DA1B7B43-7960-4EF7-9796-2E04C2E40073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions.Tests", "TinyPermissions.Tests\TinyPermissions.Tests.csproj", "{F4FEAD6B-663A-40E7-8A76-56C52645DD92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions.InMemoryProvider", "TinyPermissions.InMemoryProvider\TinyPermissions.InMemoryProvider.csproj", "{0F090B5D-4516-4ECD-B2F0-AB7E64AB7C12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyPermissions.EFCoreProvider", "TinyPermissions.EFCoreProvider\TinyPermissions.EFCoreProvider.csproj", "{3338FD53-ED45-41DF-A619-8A0EB24BA36D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA1B7B43-7960-4EF7-9796-2E04C2E40073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA1B7B43-7960-4EF7-9796-2E04C2E40073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA1B7B43-7960-4EF7-9796-2E04C2E40073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA1B7B43-7960-4EF7-9796-2E04C2E40073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4FEAD6B-663A-40E7-8A76-56C52645DD92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4FEAD6B-663A-40E7-8A76-56C52645DD92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4FEAD6B-663A-40E7-8A76-56C52645DD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4FEAD6B-663A-40E7-8A76-56C52645DD92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F090B5D-4516-4ECD-B2F0-AB7E64AB7C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F090B5D-4516-4ECD-B2F0-AB7E64AB7C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F090B5D-4516-4ECD-B2F0-AB7E64AB7C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F090B5D-4516-4ECD-B2F0-AB7E64AB7C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3338FD53-ED45-41DF-A619-8A0EB24BA36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3338FD53-ED45-41DF-A619-8A0EB24BA36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3338FD53-ED45-41DF-A619-8A0EB24BA36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3338FD53-ED45-41DF-A619-8A0EB24BA36D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
