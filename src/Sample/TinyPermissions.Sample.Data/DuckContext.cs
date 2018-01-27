@@ -5,13 +5,11 @@ using System.Linq;
 
 namespace TinyPermissionsLib.Sample.Data
 {
-    public class DuckContext : DbContext, IUserRepository, IFunctionRepository, IRoleRepository
+    public class DuckContext : DbContext, IUserRepository, IRoleRepository
     {
         public DbSet<Duck> Ducks { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Function> Functions { get; set; }
-        public DbSet<UsersFunctions> UsersFunctions { get; set; }
         public DbSet<UsersRoles> UsersRoles { get; set; }
 
         public DuckContext()
@@ -29,34 +27,6 @@ namespace TinyPermissionsLib.Sample.Data
         }
 
         public void AddUser(IUser user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IFunction GetFunction(string functionId)
-        {
-            var function = Functions.FirstOrDefault(x => x.Id == functionId);
-            return function;
-        }
-
-        public void AddFunction(IFunction function)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddUserToFunction(IUser user, IFunction function)
-        {
-            var item = new UsersFunctions()
-            {
-                User = GetUser(user.Username) as User,
-                Function = GetFunction(function.Id) as Function
-            };
-
-            UsersFunctions.Add(item);
-            SaveChanges();
-        }
-
-        public bool UserHasAccessToFunction(IUser user, IFunction function)
         {
             throw new NotImplementedException();
         }

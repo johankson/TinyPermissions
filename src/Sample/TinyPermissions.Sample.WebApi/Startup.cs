@@ -34,8 +34,6 @@ namespace TinyPermissionsLib.Sample.WebApi
             services.AddDbContextWithPermissions<DuckContext>((obj) => obj.UseSqlite(
                 Configuration.GetConnectionString("SampleDb"),
                 b => b.MigrationsAssembly("TinyPermissions.Sample.WebApi")));
-
-            // very bad hack
        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
