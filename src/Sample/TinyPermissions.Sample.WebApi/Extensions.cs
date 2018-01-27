@@ -19,7 +19,5 @@ namespace TinyPermissionsLib.Sample.WebApi
 
             return host;
         }
-
-       
     }
 }
